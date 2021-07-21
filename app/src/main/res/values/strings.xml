@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FileManager</string>
+    
+    
+    <string name="PIC_JPG">.jpg</string>
+    <string name="PIC_PNG">.png</string>
+    <string name="PIC_JPEG">.jpeg</string>
+    <string name="PIC_BMP">.bmp</string>
+    <string name="PIC_GIF">.gif</string>
+
+
+
+</resources>
