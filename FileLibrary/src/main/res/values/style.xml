@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="titleBarWhiteStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="leftIcon">@drawable/bar_arrows_left_white</item>
+        <item name="titleColor">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">200px</item>
+        <item name="android:paddingRight">24px</item>
+        <item name="android:background">#00000000</item>
+        <item name="titleSize">46px</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="lineVisible">false</item>
+    </style>
+</resources>
