@@ -26,6 +26,15 @@
         android:textColor="@color/black"
         android:padding="20px"
         android:id="@+id/tv_office"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_office"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="弹窗"
+        android:textSize="40dp"
+        android:textColor="@color/black"
+        android:padding="20px"
+        android:id="@+id/tv_dialog"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

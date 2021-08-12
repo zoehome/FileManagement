@@ -10,6 +10,7 @@ import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.ValueCallback
 import com.xx.Filelibrary.ui.activity.OfficeFileActivity
 import com.xx.Filelibrary.ui.activity.PicFileActivity
+import com.xx.Filelibrary.ui.dialog.FileTypeDialog
 import com.xx.Filelibrary.util.FMSaticValue.FM_FILE
 import com.xx.Filelibrary.util.FMSaticValue.FM_IMAGE
 
@@ -28,6 +29,9 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(Intent(this, OfficeFileActivity::class.java),FM_FILE)
         }
         )
+        findViewById<TextView>(R.id.tv_dialog).setOnClickListener(View.OnClickListener { view-> val dialog:FileTypeDialog=FileTypeDialog(this)
+        dialog.show();
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
