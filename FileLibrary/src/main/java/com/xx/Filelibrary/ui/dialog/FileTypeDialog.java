@@ -13,30 +13,43 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.xx.Filelibrary.R;
 import com.xx.Filelibrary.R2;
+import com.xx.Filelibrary.callback.FileCallBack;
 import com.xx.Filelibrary.ui.activity.OfficeFileActivity;
 import com.xx.Filelibrary.ui.activity.PicFileActivity;
+import com.xx.Filelibrary.util.HolderFragment;
+
+import java.io.File;
 
 import static com.xx.Filelibrary.util.FMSaticValue.FM_FILE;
 import static com.xx.Filelibrary.util.FMSaticValue.FM_IMAGE;
 
 public class FileTypeDialog extends Dialog {
 
+    private static final String TAG = "com.xx.Filelibrary";
     ImageView iv_photo,iv_file;
-    Activity context;
-    public FileTypeDialog(@NonNull Activity context) {
+    HolderFragment holderFragment;
+    FileCallBack mCallBack;
+
+    public FileTypeDialog(@NonNull FragmentActivity context,FileCallBack callBack) {
         super(context, R.style.DialogTheme);
         setContentView(R.layout.dialog_file_type);
-        this.context=context;
+        mCallBack=callBack;
+        holderFragment=getHolderFragment(context.getSupportFragmentManager());
         iv_file=findViewById(R.id.iv_type_file);
         iv_photo=findViewById(R.id.iv_type_photo);
         setDialog();
 
     }
+
 
     public void setDialog()
     {
@@ -46,7 +59,7 @@ public class FileTypeDialog extends Dialog {
         iv_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivityForResult(new Intent(context, OfficeFileActivity.class), FM_FILE);
+                holderFragment.startXxFile(mCallBack);
                 dismiss();
             }
 
@@ -54,7 +67,7 @@ public class FileTypeDialog extends Dialog {
         iv_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivityForResult(new Intent(context, PicFileActivity.class), FM_IMAGE);
+                holderFragment.startXxPhoto(mCallBack);
                 dismiss();
             }
 
@@ -90,6 +103,22 @@ public class FileTypeDialog extends Dialog {
         }*/
 
         super.show();
+    }
+
+
+    private HolderFragment getHolderFragment(FragmentManager fragmentManager)
+    {
+        HolderFragment holderFragment=findHolderFragment(fragmentManager);
+        if (holderFragment==null)
+        {
+            holderFragment=new HolderFragment();
+            fragmentManager.beginTransaction().add(holderFragment,TAG).commitAllowingStateLoss();
+            fragmentManager.executePendingTransactions();
+        }
+        return holderFragment;
+    }
+    private HolderFragment findHolderFragment(FragmentManager fragmentManager) {
+        return (HolderFragment) fragmentManager.findFragmentByTag(TAG);
     }
 
 
